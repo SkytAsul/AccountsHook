@@ -7,14 +7,20 @@ import org.bukkit.event.player.PlayerEvent;
 public class AccountUseEvent extends PlayerEvent {
 
 	private Account account;
+	private boolean create;
 
-	public AccountUseEvent(Player who, Account account) {
+	public AccountUseEvent(Player who, Account account, boolean create) {
 		super(who);
 		this.account = account;
+		this.create = create;
 	}
 
 	public Account getAccount() {
 		return account;
+	}
+
+	public boolean isAccountCreated() {
+		return create;
 	}
 
 	public HandlerList getHandlers() {

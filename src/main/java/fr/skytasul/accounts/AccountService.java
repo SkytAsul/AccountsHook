@@ -42,8 +42,8 @@ public final class AccountService {
 		AccountsPlugin.accounts.registerDataHook(name, hook);
 	}
 	
-	public void callAccountUse(Player p, Account acc) {
-		Bukkit.getPluginManager().callEvent(new AccountUseEvent(p, acc));
+	public void callAccountUse(Player p, Account acc, boolean create) {
+		Bukkit.getPluginManager().callEvent(new AccountUseEvent(p, acc, create));
 	}
 
 }

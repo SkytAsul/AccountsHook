@@ -4,11 +4,15 @@ import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
 
 import fr.skytasul.accounts.AbstractAccounts;
 import fr.skytasul.accounts.Account;
+import fr.skytasul.accounts.AccountService;
 import fr.skytasul.accounts.AccountsPlugin;
 
 public class UUIDAccounts extends AbstractAccounts implements Listener {
@@ -34,6 +38,12 @@ public class UUIDAccounts extends AbstractAccounts implements Listener {
 
 	public void unload() {
 		HandlerList.unregisterAll(this);
+	}
+
+	@EventHandler (priority = EventPriority.LOWEST)
+	public void onJoin(PlayerJoinEvent e) {
+		AccountService service = AccountsPlugin.getInstance().getAccountService();
+		service.callAccountUse(e.getPlayer(), service.getAccountForPlayer(e.getPlayer()), !e.getPlayer().hasPlayedBefore());
 	}
 
 }

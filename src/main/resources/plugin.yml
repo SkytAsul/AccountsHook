@@ -1,6 +1,6 @@
 name: AccountsHook
 author: SkytAsul
 api-version: 1.13
-version: 1.2-EXPERIMENTAL
+version: 1.3.1-EXPERIMENTAL
 description: This plugin allows other plugins to hook easily into accounts systems without needing to hook each plugin (classes plugin...)
 main: fr.skytasul.accounts.AccountsPlugin
