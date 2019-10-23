@@ -15,24 +15,28 @@ public abstract class AbstractAccounts {
 		return getClass().getSimpleName();
 	}
 	
+	public abstract void load();
+
+	public abstract void unload();
+
 	public abstract Account getAccountForPlayer(Player p);
 	
 	public abstract Account getAccountFromIdentifier(String identifier);
 	
 	public Account createAccountFromUUID(UUID id){
-		return null;
+		throw new UnsupportedOperationException("UUID account creation is unsupported with " + getName());
 	}
 	
 	public void registerDataHook(String name, DataHook hook){
 		dataHooks.put(name, hook);
 	}
 	
-	public Map<String, Map<String, Object>> unload(Account acc){
+	public Map<String, Map<String, Object>> save(Account acc, boolean unload){
 		Map<String, Map<String, Object>> map = new HashMap<>();
 		
 		for (Entry<String, DataHook> en : dataHooks.entrySet()){
 			try{
-				map.put(en.getKey(), en.getValue().unload(acc));
+				map.put(en.getKey(), en.getValue().save(acc, unload));
 			}catch (Exception ex){
 				AccountsPlugin.getInstance().getLogger().severe(en.getKey() + " hooker failed to save datas");
 				ex.printStackTrace();

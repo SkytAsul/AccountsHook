@@ -5,11 +5,12 @@ import java.util.Map;
 public interface DataHook {
 
 	/**
-	 * Called when the accounts plugin have to unload player datas
-	 * @param acc Account to save
+	 * Called when the accounts plugin have to save/unload player datas
+	 * @param acc Account to save/unload
+	 * @param unload true if the specified account will be unloaded
 	 * @return Map of saved datas
 	 */
-	public abstract Map<String, Object> unload(Account acc);
+	public abstract Map<String, Object> save(Account acc, boolean unload);
 	
 	/**
 	 * Called when the accounts plugin have to load player datas

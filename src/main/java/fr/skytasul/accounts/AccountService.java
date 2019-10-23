@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 public final class AccountService {
@@ -41,4 +42,8 @@ public final class AccountService {
 		AccountsPlugin.accounts.registerDataHook(name, hook);
 	}
 	
+	public void callAccountUse(Player p, Account acc) {
+		Bukkit.getPluginManager().callEvent(new AccountUseEvent(p, acc));
+	}
+
 }
