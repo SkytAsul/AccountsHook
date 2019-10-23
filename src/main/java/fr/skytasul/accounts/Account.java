@@ -38,7 +38,9 @@ public abstract class Account {
 	protected abstract String getMyIdentifier();
 	
 	public final String getIdentifier(){
-		return AccountsPlugin.accounts.getName() + "|" + getMyIdentifier();
+		String identifier = getMyIdentifier();
+		if (identifier == null) return null;
+		return AccountsPlugin.accounts.getName() + "|" + identifier;
 	}
 	
 }
