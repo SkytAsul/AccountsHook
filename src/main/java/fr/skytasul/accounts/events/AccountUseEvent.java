@@ -1,22 +1,18 @@
-package fr.skytasul.accounts;
+package fr.skytasul.accounts.events;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
-import org.bukkit.event.player.PlayerEvent;
 
-public class AccountUseEvent extends PlayerEvent {
+import fr.skytasul.accounts.Account;
 
-	private Account account;
+public class AccountUseEvent extends AccountEvent {
+
 	private boolean create;
 
 	public AccountUseEvent(Player who, Account account, boolean create) {
 		super(who);
 		this.account = account;
 		this.create = create;
-	}
-
-	public Account getAccount() {
-		return account;
 	}
 
 	public boolean isAccountCreated() {

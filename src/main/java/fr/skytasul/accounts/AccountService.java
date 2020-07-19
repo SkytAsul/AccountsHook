@@ -7,6 +7,9 @@ import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import fr.skytasul.accounts.events.AccountLeaveEvent;
+import fr.skytasul.accounts.events.AccountUseEvent;
+
 public final class AccountService {
 
 	private Map<Player, Account> cachedAccounts = new HashMap<>();
@@ -44,6 +47,10 @@ public final class AccountService {
 	
 	public void callAccountUse(Player p, Account acc, boolean create) {
 		Bukkit.getPluginManager().callEvent(new AccountUseEvent(p, acc, create));
+	}
+	
+	public void callAccountLeave(Player p, Account acc) {
+		Bukkit.getPluginManager().callEvent(new AccountLeaveEvent(p, acc));
 	}
 
 }
