@@ -1,32 +1,26 @@
 package fr.skytasul.accounts.uuid;
 
-import java.util.UUID;
-
+import fr.skytasul.accounts.Account;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.entity.Player;
-
-import fr.skytasul.accounts.Account;
+import java.util.UUID;
 
 public class UUIDAccount extends Account {
 
-	UUID id;
-	
-	UUIDAccount(UUID id){
+	protected UUID id;
+
+	protected UUIDAccount(UUIDAccountsProvider provider, UUID id) {
+		super(provider);
 		this.id = id;
 	}
-	
+
 	@Override
 	public OfflinePlayer getOfflinePlayer() {
 		return Bukkit.getOfflinePlayer(id);
 	}
 
-	public Player getAccountPlayer(){
-		return Bukkit.getPlayer(id);
-	}
-
 	@Override
-	public String getMyIdentifier() {
+	public String getAccountIdentifier() {
 		return id.toString();
 	}
 
@@ -36,13 +30,15 @@ public class UUIDAccount extends Account {
 	}
 
 	@Override
-	public boolean equalsAccount(Account acc) {
-		return ((UUIDAccount) acc).id.equals(this.id);
+	public int hashCode() {
+		return id.hashCode();
 	}
 
 	@Override
-	public int hashCode() {
-		return id.hashCode();
+	public boolean equals(Object obj) {
+		if (obj instanceof UUIDAccount uuidAccount)
+			return id.equals(uuidAccount.id);
+		return false;
 	}
 
 }

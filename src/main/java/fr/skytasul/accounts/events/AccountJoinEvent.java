@@ -1,17 +1,16 @@
 package fr.skytasul.accounts.events;
 
+import fr.skytasul.accounts.Account;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
-import fr.skytasul.accounts.Account;
-
-public class AccountUseEvent extends AccountEvent {
+public class AccountJoinEvent extends AccountEvent {
 
 	private boolean create;
 
-	public AccountUseEvent(Player who, Account account, boolean create) {
-		super(who);
-		this.account = account;
+	public AccountJoinEvent(@NotNull Player who, @NotNull Account account, boolean create) {
+		super(who, account);
 		this.create = create;
 	}
 
@@ -19,6 +18,7 @@ public class AccountUseEvent extends AccountEvent {
 		return create;
 	}
 
+	@Override
 	public HandlerList getHandlers() {
 		return handlers;
 	}

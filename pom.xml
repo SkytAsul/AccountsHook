@@ -4,10 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>fr.skytasul</groupId>
 	<artifactId>accountshook</artifactId>
-	<version>1.4.0</version>
+	<version>2.0.0</version>
 
 	<name>AccountsHook</name>
-	<description>A Vault-like plugin that allows other Spigot plugins to hook easily into existing accounts systems.</description>
+	<description>A Vault-like plugin that allows other Spigot plugins to hook
+		easily into existing accounts systems.</description>
 	<url>https://github.com/SkytAsul/AccountsHook</url>
 
 	<licenses>
@@ -21,7 +22,7 @@
 		<developer>
 			<name>SkytAsul</name>
 			<email>skytasul@gmail.com</email>
-			<url>https://github.com/SkytAsul</url>
+			<url>https://skytasul.fr</url>
 		</developer>
 	</developers>
 
@@ -34,8 +35,8 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
 	</properties>
 
 	<build>
@@ -105,8 +106,14 @@
 		<dependency>
 			<groupId>org.spigotmc</groupId>
 			<artifactId>spigot-api</artifactId>
-			<version>1.16.1-R0.1-SNAPSHOT</version>
+			<version>1.17.1-R0.1-SNAPSHOT</version>
 			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jetbrains</groupId>
+			<artifactId>annotations</artifactId>
+			<version>26.0.1</version>
 		</dependency>
 	</dependencies>
 </project>
