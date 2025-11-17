@@ -8,7 +8,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
@@ -29,16 +28,18 @@ public abstract class AbstractAccountsProvider implements AccountsProvider {
 	}
 
 	@Override
-	public @NotNull Account getCurrentAccount(@NotNull Player p) {
+	public @NotNull Optional<Account> getCurrentAccount(@NotNull Player p) {
 		var account = playersCache.getIfPresent(p);
 		if (account == null || !account.isCurrent()) {
-			account = Objects.requireNonNull(getCurrentAccountInternal(p));
-			playersCache.put(p, account);
+			var accountOpt = getCurrentAccountInternal(p);
+			if (accountOpt.isPresent())
+				playersCache.put(p, accountOpt.get());
+			return accountOpt;
 		}
-		return account;
+		return Optional.of(account);
 	}
 
-	protected abstract @NotNull Account getCurrentAccountInternal(@NotNull Player p);
+	protected abstract @NotNull Optional<Account> getCurrentAccountInternal(@NotNull Player p);
 
 	@Override
 	public @NotNull Optional<Account> getFromIdentifier(@NotNull NamespacedKey identifier) {

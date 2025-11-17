@@ -27,8 +27,8 @@ public class UUIDAccountsProvider extends AbstractAccountsProvider implements Li
 	}
 
 	@Override
-	protected @NotNull Account getCurrentAccountInternal(@NotNull Player p) {
-		return new UUIDAccount(this, p.getUniqueId());
+	protected @NotNull Optional<Account> getCurrentAccountInternal(@NotNull Player p) {
+		return Optional.of(new UUIDAccount(this, p.getUniqueId()));
 	}
 
 	@Override
@@ -38,12 +38,12 @@ public class UUIDAccountsProvider extends AbstractAccountsProvider implements Li
 
 	@EventHandler (priority = EventPriority.LOWEST)
 	public void onJoin(PlayerJoinEvent e) {
-		callAccountJoin(e.getPlayer(), getCurrentAccount(e.getPlayer()), !e.getPlayer().hasPlayedBefore());
+		callAccountJoin(e.getPlayer(), new UUIDAccount(this, e.getPlayer().getUniqueId()), !e.getPlayer().hasPlayedBefore());
 	}
 
 	@EventHandler (priority = EventPriority.LOWEST)
 	public void onQuit(PlayerQuitEvent e) {
-		callAccountLeave(e.getPlayer(), getCurrentAccount(e.getPlayer()));
+		callAccountLeave(e.getPlayer(), new UUIDAccount(this, e.getPlayer().getUniqueId()));
 	}
 
 }

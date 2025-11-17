@@ -14,9 +14,9 @@ public interface AccountsProvider {
 
 	public @NotNull Optional<Account> getFromIdentifier(@NotNull NamespacedKey identifier);
 
-	public @NotNull Account getCurrentAccount(@NotNull Player p);
+	public @NotNull Optional<Account> getCurrentAccount(@NotNull Player p);
 
-	public @NotNull Collection<@NotNull Account> getAllAccounts(@NotNull OfflinePlayer player);
+	public @NotNull Collection<@NotNull ? extends Account> getAllAccounts(@NotNull OfflinePlayer player);
 
 	public default boolean isDefaultProvider() {
 		return Bukkit.getServicesManager().load(AccountsProvider.class) == this;
