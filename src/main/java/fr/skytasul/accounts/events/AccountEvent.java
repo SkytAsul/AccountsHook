@@ -5,6 +5,7 @@ import fr.skytasul.accounts.AccountsProvider;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerEvent;
 import org.jetbrains.annotations.NotNull;
+import java.util.Objects;
 
 public abstract class AccountEvent extends PlayerEvent {
 
@@ -12,7 +13,7 @@ public abstract class AccountEvent extends PlayerEvent {
 
 	public AccountEvent(@NotNull Player who, @NotNull Account account) {
 		super(who);
-		this.account = account;
+		this.account = Objects.requireNonNull(account);
 	}
 
 	public @NotNull Account getAccount() {

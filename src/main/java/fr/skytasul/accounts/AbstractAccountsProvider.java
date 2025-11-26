@@ -51,10 +51,12 @@ public abstract class AbstractAccountsProvider implements AccountsProvider {
 	protected abstract @NotNull Optional<Account> getFromIdentifierInternal(@NotNull String accountIdentifier);
 
 	protected void callAccountJoin(@NotNull Player p, @NotNull Account acc, boolean create) {
+		playersCache.put(p, acc);
 		Bukkit.getPluginManager().callEvent(new AccountJoinEvent(p, acc, create));
 	}
 
 	protected void callAccountLeave(@NotNull Player p, @NotNull Account acc) {
+		playersCache.invalidate(p);
 		Bukkit.getPluginManager().callEvent(new AccountLeaveEvent(p, acc));
 	}
 
